@@ -6,7 +6,7 @@ let rows;    /* To be determined by window height */
 let currentBoard;
 let nextBoard;
 
-123
+
 
 function setup() {
    /* Set the canvas to be under the element #canvas*/
