@@ -5,7 +5,10 @@ let columns; /* To be determined by window width */
 let rows;    /* To be determined by window height */
 let currentBoard;
 let nextBoard;
-let fr = 30;
+let fr = 5;
+let start = true;
+let survival = 2
+
 
 
 
@@ -14,7 +17,7 @@ function setup() {
    /* Set the canvas to be under the element #canvas*/
    const canvas = createCanvas(windowWidth, windowHeight - 100);
    canvas.parent(document.querySelector('#canvas'));
-   frameRate(fr)
+
    /*Calculate the number of columns and rows */
    columns = floor(width / unitLength);
    rows = floor(height / unitLength);
@@ -45,7 +48,12 @@ function init() {
 
 function draw() {
    background(255);
-   generate();
+   frameRate(fr);
+   if (start) {
+      generate();
+   }
+
+
    for (let i = 0; i < columns; i++) {
       for (let j = 0; j < rows; j++) {
          if (currentBoard[i][j] == 1) {
@@ -57,6 +65,7 @@ function draw() {
          rect(i * unitLength, j * unitLength, unitLength, unitLength);
       }
    }
+   survival = document.querySelector(".change-survival-input").value
 }
 
 function generate() {
@@ -77,7 +86,7 @@ function generate() {
          }
 
          // Rules of Life
-         if (currentBoard[x][y] == 1 && neighbors < 2) {
+         if (currentBoard[x][y] == 1 && neighbors < survival) {
             // Die of Loneliness
             nextBoard[x][y] = 0;
          } else if (currentBoard[x][y] == 1 && neighbors > 3) {
@@ -149,5 +158,26 @@ document.querySelector('#reset-game')
 
 document.querySelector('.slider')
    .addEventListener('click', function (event) {
-      console.log(event.target.value);
+      fr = parseInt(event.currentTarget.value)
+      frameRate(fr)
    });
+
+
+
+
+stopGame = document.querySelector('#stop-game')
+   .addEventListener('click', function (event) {
+      let currentstate = event.currentTarget.innerHTML
+      console.log(currentstate)
+      if (start) {
+         start = false;
+         draw()
+         event.currentTarget.innerHTML = "PLAY AGAIN"
+      } else if (!start) {
+         start = true;
+         draw();
+         event.currentTarget.innerHTML = "STOP"
+      }
+   });
+
+
