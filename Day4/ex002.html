@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+        integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            box-sizing: border-box;
+            margin: 0;
+        }
+
+        section.game {
+            margin: 3rem;
+            border: 1px solid lightgray;
+            border-radius: 18px;
+            position: relative;
+        }
+
+        header {
+            margin: 10px;
+            display: flex;
+
+            font-size: 30px;
+
+        }
+
+        header select {
+            border: none;
+            font-size: 20px;
+            color: #979797;
+            appearance: none;
+            text-align: center;
+
+        }
+
+        .caretDown {
+            font-size: 20px;
+            color: #979797;
+            /* margin: 0 10px; */
+            position: absolute;
+            left: 30px;
+
+        }
+
+        header a {
+            position: absolute;
+            right: 20px;
+        }
+
+        .section1 {
+            display: flex;
+            justify-content: space-evenly;
+
+        }
+
+        .xo {
+            font-size: 20px;
+            padding: 10px;
+            width: 30%;
+            height: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: solid 1px lightgray;
+            border-radius: 20px;
+
+        }
+
+        .xo1 {
+            border-bottom: solid 3px #33B09B;
+            box-shadow: 0 0 10px grey;
+        }
+
+        .tittle {
+            text-align: center;
+            font-weight: lighter;
+            font-size: 20px;
+        }
+
+        .section3 {
+            margin: 0;
+            width: auto;
+            height: 460px;
+            background: #33B09B;
+            padding: 10px 0;
+
+        }
+
+        .squares {
+
+            margin: 30px auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            width: 400px;
+            height: 400px;
+            background: #2A917F;
+            align-content: space-between;
+        }
+
+
+
+
+        .small_squares {
+            /* margin: 10px; */
+            background-color: #33B09B;
+
+            width: 128px;
+            height: 128px;
+        }
+
+        .number {
+            font-size: 1rem;
+            text-align: center;
+            align-items: center;
+            line-height: 125px;
+        }
+
+        .square_x {
+            font-size: 80px;
+            color: #434343;
+            line-height: 125px;
+        }
+
+        .square_o {
+            font-size: 80px;
+            color: #F0E6C9;
+            line-height: 125px;
+        }
+
+        .section4 div {
+            color: #33B09B;
+            font-size: 30px;
+            text-align: center;
+        }
+
+        footer {
+
+            color: gray;
+            font-style: italic;
+            position: absolute;
+            bottom: -30px;
+            right: 20px;
+        }
+    </style>
+    <title>Document</title>
+
+</head>
+
+<body>
+
+    <article>
+        <section class="game">
+            <header>
+                <div class="caretDown">
+                    <i class="fa-solid fa-caret-down"></i>
+                </div>
+                <select>
+                    <option value="Easy"><i class="fa-solid fa-caret-down"></i> Easy</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Impossible">Impossible</option>
+                    <option value="Play against a friend">Play against a friend</option>
+                </select>
+                <a href="#"><i class="fa-solid fa-share-nodes"></i></i></a>
+            </header>
+            <section class="section1">
+                <div class="xo1 xo">
+                    <div class="x"><i class="fa-solid fa-x square_x"></i></i></div>
+                    <div class="scoreX"> - </div>
+                </div>
+                <div class="xo2 xo">
+                    <div class="o"><i class="fa-solid fa-o square_o"></i></div>
+                    <div class="scoreO"> - </div>
+                </div>
+
+            </section>
+            <section class="section2">
+                <div class="tittle"><span><i class="fa-solid fa-x"></i></span> Turn</div>
+
+            </section>
+            <section class="section3">
+                <div class="squares">
+                    <div class="small_squares number box-1"></div>
+                    <div class="small_squares number box-2"></div>
+                    <div class="small_squares number box-3"></div>
+                    <div class="small_squares number box-4"></div>
+                    <div class="small_squares number box-5"></div>
+                    <div class="small_squares number box-6"></div>
+                    <div class="small_squares number box-7"></div>
+                    <div class="small_squares number box-8"></div>
+                    <div class="small_squares number box-9"></div>
+
+                </div>
+
+            </section>
+            <section class="section4">
+                <div> RESTART GAME</div>
+            </section>
+            <footer>feedback</footer>
+        </section>
+        <div>
+            <div class="box"></div>
+        </div>
+
+        <div class="box">
+            <div class="box"></div>
+        </div>
+        <div class="box good-box"></div>
+        <div class="box not-a-box"></div>
+
+        <span class="box"></span>
+        <button>Click Here</button>
+
+
+
+    </article>
+
+    <script>
+        // document.querySelector('.squares').addEventListener('click', function (event) {
+
+        //     if (event.target && event.target.matches(".small_squares") && event.target.innerHTML == "") {
+        //         event.target.innerHTML = '<i class="fa-solid fa-x square_x"></i>'
+        //     }
+        //     // 1. Get the element itself by event.target or event.currentTarget
+
+        //     // 2. Check if the box is occupied
+
+        //     // 3, Put the X in if the box is not occupied.
+
+        // });
+        function boxX() {
+            event.target.innerHTML = '<i class="fa-solid fa-x square_x"></i>'
+            // document.querySelector('.squares').addEventListener('click', function (event) {
+
+            //     if (event.target && event.target.matches(".small_squares") && event.target.innerHTML == "") {
+            //         event.target.innerHTML = '<i class="fa-solid fa-x square_x"></i>'
+            //     }
+            // });
+        }
+
+        // function boxO() {
+        //     rand = Math.floor(Math.random() * 8)
+        //     document.querySelector('.squares').addEventListener('click', function (boxes[rand]) {
+        //         if (event.target && event.target.matches(".small_squ   ares") && event.target.innerHTML == "") {
+        //             event.target.innerHTML = '<i class="fa-solid fa-o square_o"></i>'
+        //         }
+        //     });
+        // }
+
+
+
+
+        const boxes = document.querySelectorAll('.small_squares')
+        let count = 0
+        let tittle = document.querySelector(".tittle")
+        let score = document.querySelector(".scoreX")
+        let rand = Math.floor(Math.random() * 8)
+
+        for (let box of boxes) {
+            let checkBox1 = boxes[0].innerHTML === boxes[1].innerHTML && boxes[2].innerHTML;
+
+            document.querySelector('.squares').addEventListener('click', function (event) {
+                rand = Math.floor(Math.random() * 8)
+                if (event.target && event.target.matches(".small_squares") && event.target.innerHTML == "") {
+                    // if (count % 2 == 0) {
+                    //     event.target.innerHTML = '<i class="fa-solid fa-x square_x"></i>';
+                    // } else {
+                    //     event.target.innerHTML = '<i class="fa-solid fa-o square_o"></i>';
+                    // }
+
+                    event.target.innerHTML = count % 2 == 0 ? '<i class="fa-solid fa-x square_x"></i>' : '<i class="fa-solid fa-o square_o"></i>';
+
+                    console.log(event.target)
+
+                    count += 1;
+                } if (boxes[0].innerHTML === boxes[1].innerHTML && boxes[2].innerHTML === '<i class="fa-solid fa-x square_x"></i>') {
+                    tittle.innerHTML = '<i class="fa-solid fa-x square_x"></i>' + " Win";
+                    // } else if (boxes[0].innerHTML === boxes[1].innerHTML && boxes[2].innerHTML === '<i class="fa-solid fa-o square_o"></i>') {
+                    //     tittle.innerHTML = '<i class="fa-solid fa-o square_o"></i>' + " Win";
+                } else if (boxes[3].innerHTML === boxes[4].innerHTML && boxes[5].innerHTML === '<i class="fa-solid fa-x square_x"></i>') {
+                    tittle.innerHTML = '<i class="fa-solid fa-x square_x"></i>' + " Win";
+                } else if (boxes[6].innerHTML === boxes[7].innerHTML && boxes[8].innerHTML === '<i class="fa-solid fa-x square_x"></i>') {
+                    tittle.innerHTML = '<i class="fa-solid fa-x square_x"></i>' + " Win";
+                } else if (boxes[0].innerHTML === boxes[3].innerHTML && boxes[6].innerHTML === '<i class="fa-solid fa-x square_x"></i>') {
+                    tittle.innerHTML = '<i class="fa-solid fa-x square_x"></i>' + " Win";
+                } else if (boxes[1].innerHTML === boxes[4].innerHTML && boxes[7].innerHTML === '<i class="fa-solid fa-x square_x"></i>') {
+                    tittle.innerHTML = '<i class="fa-solid fa-x square_x"></i>' + " Win";
+                } else if (boxes[2].innerHTML === boxes[5].innerHTML && boxes[8].innerHTML === '<i class="fa-solid fa-x square_x"></i>') {
+                    tittle.innerHTML = '<i class="fa-solid fa-x square_x"></i>' + " Win";
+                } else if (boxes[0].innerHTML === boxes[4].innerHTML && boxes[8].innerHTML === '<i class="fa-solid fa-x square_x"></i>') {
+                    tittle.innerHTML = '<i class="fa-solid fa-x square_x"></i>' + " Win";
+                } else if (boxes[2].innerHTML === boxes[4].innerHTML && boxes[6].innerHTML === '<i class="fa-solid fa-x square_x"></i>') {
+                    tittle.innerHTML = '<i class="fa-solid fa-x square_x"></i>' + " Win";
+                }
+
+
+
+
+            })
+
+
+        }
+
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>
