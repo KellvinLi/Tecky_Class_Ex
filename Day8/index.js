@@ -5,6 +5,8 @@ let columns; /* To be determined by window width */
 let rows;    /* To be determined by window height */
 let currentBoard;
 let nextBoard;
+let fr = 30;
+
 
 
 
@@ -12,7 +14,7 @@ function setup() {
    /* Set the canvas to be under the element #canvas*/
    const canvas = createCanvas(windowWidth, windowHeight - 100);
    canvas.parent(document.querySelector('#canvas'));
-
+   frameRate(fr)
    /*Calculate the number of columns and rows */
    columns = floor(width / unitLength);
    rows = floor(height / unitLength);
@@ -143,4 +145,9 @@ function mouseDragged() {
 document.querySelector('#reset-game')
    .addEventListener('click', function () {
       init();
+   });
+
+document.querySelector('.slider')
+   .addEventListener('click', function (event) {
+      console.log(event.target.value);
    });
