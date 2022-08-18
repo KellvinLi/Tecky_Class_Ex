@@ -8,6 +8,7 @@ let nextBoard;
 let fr = 5;
 let start = true;
 let survival = 2
+let reproduction = 3
 
 
 
@@ -65,7 +66,7 @@ function draw() {
          rect(i * unitLength, j * unitLength, unitLength, unitLength);
       }
    }
-   survival = document.querySelector(".change-survival-input").value
+
 }
 
 function generate() {
@@ -89,7 +90,7 @@ function generate() {
          if (currentBoard[x][y] == 1 && neighbors < survival) {
             // Die of Loneliness
             nextBoard[x][y] = 0;
-         } else if (currentBoard[x][y] == 1 && neighbors > 3) {
+         } else if (currentBoard[x][y] == 1 && neighbors > reproduction) {
             // Die of Overpopulation
             nextBoard[x][y] = 0;
          } else if (currentBoard[x][y] == 0 && neighbors == 3) {
@@ -179,5 +180,26 @@ stopGame = document.querySelector('#stop-game')
          event.currentTarget.innerHTML = "STOP"
       }
    });
+
+document.querySelector('.change-survival-btn')
+   .addEventListener('click', function (event) {
+      if (event.target.matches(".change-survival-btn")) {
+         survival = document.querySelector(".change-survival-input").value
+         draw();
+      } else {
+         return survival
+      }
+
+   });
+
+document.querySelector(".change-reproduction-btn").addEventListener('click', function (event) {
+   if (event.target.matches(".change-reproduction-btn")) {
+      reproduction = document.querySelector(".change-reproduction-input").value
+      draw();
+   } else {
+      return reproduction
+   }
+
+});
 
 
