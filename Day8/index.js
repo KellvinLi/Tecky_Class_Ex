@@ -83,7 +83,7 @@ function drawOnCanvas() {
    for (let i = 0; i < columns; i++) {
       for (let j = 0; j < rows; j++) {
          if (currentBoard[i][j].value == 1 && currentBoard[i][j].static == false) {
-            fill(random(0, 255), mouseX, mouseY);
+            fill(random(0, 255), random(10, 240), random(80, 240));
             if (currentBoard[i][j].times > 1 && currentBoard[i][j].times <= 4 && currentBoard[i][j].static == false) {
                fill("#F8C471");
             } else if (currentBoard[i][j].times > 4 && currentBoard[i][j].times <= 8 && currentBoard[i][j].static == false) {
