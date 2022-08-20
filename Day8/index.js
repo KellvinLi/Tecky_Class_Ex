@@ -1,6 +1,7 @@
 const unitLength = 9;
-const boxColor = "yellow";
+const boxColor = "#F8C471";
 const strokeColor = 100;
+const boxRound = 9;
 let columns; /* To be determined by window width */
 let rows;    /* To be determined by window height */
 let currentBoard;
@@ -66,7 +67,7 @@ function draw() {
    if (!start) {
       return
    }
-   background(255);
+   background("#F5EEF8");
    frameRate(fr);
 
 
@@ -84,7 +85,7 @@ function drawOnCanvas() {
          if (currentBoard[i][j].value == 1 && currentBoard[i][j].static == false) {
             fill(random(0, 255), mouseX, mouseY);
             if (currentBoard[i][j].times > 1 && currentBoard[i][j].times <= 4 && currentBoard[i][j].static == false) {
-               fill("yellow");
+               fill("#F8C471");
             } else if (currentBoard[i][j].times > 4 && currentBoard[i][j].times <= 8 && currentBoard[i][j].static == false) {
                fill(255, 100, 0);
             } else if (currentBoard[i][j].times > 8 && currentBoard[i][j].times <= 12 && currentBoard[i][j].static == false) {
@@ -96,10 +97,10 @@ function drawOnCanvas() {
             }
             // console.log(currentBoard[i][j].times)
          } else {
-            fill(255);
+            fill("#F5EEF8");
          }
-         stroke(strokeColor);
-         rect(i * unitLength, j * unitLength, unitLength, unitLength);
+         noStroke();
+         rect(i * unitLength, j * unitLength, unitLength, unitLength, boxRound);
       }
    }
 }
@@ -461,8 +462,8 @@ function mouseDragged() {
    const y = Math.floor(mouseY / unitLength);
    currentBoard[x][y] = { value: 1, times: 0, static: false };;
    fill(boxColor);
-   stroke(strokeColor);
-   rect(x * unitLength, y * unitLength, unitLength, unitLength);
+   noStroke();
+   rect(x * unitLength, y * unitLength, unitLength, unitLength, boxRound);
 }
 
 /**
@@ -490,7 +491,7 @@ function keyboardMode() {
          return
       }
       // fill('BlueViolet')
-      // rect(keyboardX * unitLength, keyboardY * unitLength, unitLength, unitLength);
+      // rect(keyboardX * unitLength, keyboardY * unitLength, unitLength, unitLength,boxRound);
 
       switch (event.code) {
          case "Enter":
@@ -525,7 +526,7 @@ function keyboardMode() {
 
       drawOnCanvas()
       fill('BlueViolet')
-      rect(keyboardX * unitLength, keyboardY * unitLength, unitLength, unitLength);
+      rect(keyboardX * unitLength, keyboardY * unitLength, unitLength, unitLength, boxRound);
       console.log('draw rect on :', { keyboardX, keyboardY });
       // Cancel the default action to avoid it being handled twice
    }, true);
