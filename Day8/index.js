@@ -613,7 +613,23 @@ document.querySelector(".change-reproduction-btn").addEventListener('click', fun
    } else {
       return reproduction
    }
-
 });
+
+
+
+
+let anniu = document.getElementById('anniu');
+let kaiguan = document.querySelector('.kaiguan');
+let body = document.body;
+
+anniu.addEventListener('click', function (event) {
+   if (event.currentTarget.matches("#anniu")) {
+      event.currentTarget.classList.toggle('hei');
+      event.currentTarget.classList.toggle('bai');
+      kaiguan.classList.toggle("new-kaiguan");
+      body.classList.toggle("dark-mode")
+   } return
+})
+
 
 
