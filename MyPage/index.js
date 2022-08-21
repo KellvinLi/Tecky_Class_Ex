@@ -581,12 +581,13 @@ document.querySelector('#random-add-pattern')
 document.querySelector('#pattern-mode')
    .addEventListener('click', function () {
       getPattern(getPatternArray(patternArray[6]), 30, 0)
-      let box1 = setInterval(function (box1) { setTimeout(function () { getPattern(getPatternArray(patternArray[6]), 50, 0) }, 0) }, 20000)
+      let box1 = setInterval(function (box1) { setTimeout(function () { getPattern(getPatternArray(patternArray[6]), 50, 0) }, 0) }, 15000)
       setTimeout(function () { clearInterval(box1) }, 60000)
       getPattern(getPatternArray(patternArray[4]), 80, 15)
       getPattern(getPatternArray(patternArray[9]), 20, 25)
       setTimeout(function () { getPattern(getPatternArray(patternArray[1]), 60, 30) }, 15000)
-      setTimeout(function () { getPattern(getPatternArray(patternArray[10]), 60, 30) }, 120000)
+      // setTimeout(function () { getPattern(getPatternArray(patternArray[10]), 60, 30) }, 120000)
+      setTimeout(function () { getPattern(getPatternArray(patternArray[7]), 60, 90) }, 120000)
 
    });
 
