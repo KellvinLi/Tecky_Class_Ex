@@ -105,10 +105,36 @@ function drawOnCanvas() {
    }
 }
 
+
 function windowResized() {
    noLoop();
    resizeCanvas(windowWidth - 80, windowHeight);
-   setup();
+   columns = floor(width / unitLength);
+   rows = floor(height / unitLength);
+   // setup();
+
+   //重點要學識將舊圖save之後resizeed格仔再將新圖畫出嚟
+   const oldBoard = currentBoard;
+   currentBoard = [];
+   nextBoard = [];
+   for (let i = 0; i < columns; i++) {
+      currentBoard[i] = [];
+      nextBoard[i] = [];
+   }
+   init();
+
+   x = 0
+   for (let row of oldBoard) {
+      let y = 0;
+      for (let cell of row) {
+         if (currentBoard[x] !== undefined && currentBoard[x][y] !== undefined) {
+            currentBoard[x][y] = cell;
+         }
+         y++;
+      }
+      x++;
+   }
+
    loop();
 
 }
@@ -401,8 +427,10 @@ function getPatternArray(pattern) {
 function getPattern(newPatternArray, x, y) {
    for (let i = 0; i < newPatternArray.length; i++) {
       for (let j = 0; j < newPatternArray[i].length; j++) {
-         newPatternArray[i][j] === "1" ? currentBoard[j + x][i + y].value = 1 : currentBoard[j + x][i + y].value = 0;
-
+         newPatternArray[i][j] === "1" ? currentBoard[(j + x + columns) % columns][(i + y + rows) % rows].value = 1 : currentBoard[(j + x + columns) % columns][(i + y + rows) % rows].value = 0;
+         //記得要newPatternArray[i][j] === "1" ? currentBoard[(j + x + columns) % columns][(i + y + rows) % rows].value = 1 :
+         // currentBoard[(j + x + columns) % columns][(i + y + rows) % rows].value = 0;
+         //咁樣就唔會爆邊
       }
    }
 }
@@ -442,13 +470,19 @@ function generate() {
             nextBoard[x][y].times = time;
          } else {
             // Stasis
-            nextBoard[x][y] = currentBoard[x][y];
+
+            // nextBoard[x][y] = currentBoard[x][y];
+
+            nextBoard[x][y].value = currentBoard[x][y].value;
+            nextBoard[x][y].times = currentBoard[x][y].times;
+            nextBoard[x][y].static = currentBoard[x][y].static;
          }
       }
    }
 
    // Swap the nextBoard to be the current Board
-   [currentBoard, nextBoard] = [JSON.parse(JSON.stringify(nextBoard)), JSON.parse(JSON.stringify(currentBoard))];
+   // [currentBoard, nextBoard] = [JSON.parse(JSON.stringify(nextBoard)), JSON.parse(JSON.stringify(currentBoard))];
+   [currentBoard, nextBoard] = [nextBoard, currentBoard];
 }
 
 function mouseDragged() {
